@@ -14,7 +14,7 @@ struct AddTransactionView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var selectedId: String
     var body: some View {
-        VStack{
+        VStack (spacing: 40){
             HStack(){
                 Text("Pay Bill")
                     .font(.title2)
@@ -26,23 +26,16 @@ struct AddTransactionView: View {
                     Text("Cancel")
                 }
             }
-            Spacer()
-                .frame(height: 50)
-            Text("Who's Paying?")
-                .font(.headline)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
             
-            HStack {
-                Button(action: {
-                    selectedId = myId
-                }){
-                    PersonTile(color: appColor ,name: myId, isSelected: myId == selectedId)
-                }
-                Button(action:{
-                    selectedId = otherId
-                } ){
-                    PersonTile(color: secondaryColor,name: otherId, isSelected: otherId == selectedId)
+            Section{
+                Text("Who's Paying?")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                HStack (spacing: 20) {
+                    PersonTile(selectedId: $selectedId, color: appColor, name: myId)
+                    PersonTile(selectedId: $selectedId, color: secondaryColor, name: otherId)
                 }
             }
             Spacer()

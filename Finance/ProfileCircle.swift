@@ -7,25 +7,48 @@
 import SwiftUI
 
 struct PersonTile: View {
+    @Binding var selectedId: String
     let color: Color
     let name: String
-    let isSelected: Bool
+    
     var body: some View {
-        VStack{
-            Text(name.uppercased().prefix(1))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-                .foregroundColor(isSelected ? color: .white)
-                .background(isSelected ? .white: color)
-                .clipShape(Circle())
-                .frame(maxWidth: .infinity, alignment: .center)
-            Text(name.capitalized)
-                .fontWeight(.bold)
-                .foregroundColor(isSelected ? .white: color)
+        let isSelected: Bool = name == selectedId
+        Button {
+            withAnimation {
+                selectedId = name
+            }
+        } label: {
+            VStack{
+                Text(name.uppercased().prefix(1))
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(color)
+                    .clipShape(Circle())
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Text(name.capitalized)
+                    .fontWeight(.bold)
+                    .foregroundColor(color)
+            }
+            .scaleEffect(isSelected ? 1.5 : 1.2)
+            .padding(50)
+            .overlay{
+                if isSelected {
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(color, lineWidth: 4)
+                }
+            }
         }
-        .padding()
-        .background(isSelected ? color: .white)
-        .cornerRadius(15)
+    }
+    
+}
+struct AddTransactionViw_Previews: PreviewProvider {
+    static var previews: some View {
+        PersonTile(selectedId: Binding(get: {
+            return "otherId"
+        }, set: { Value, Transaction in
+            ""
+        }), color:  secondaryColor, name: "otherId")
     }
 }
