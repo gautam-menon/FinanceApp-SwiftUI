@@ -9,19 +9,16 @@ import Foundation
 
 struct StorageService {
    static func getUser() -> String {
-//        let userDefaults = UserDefaults()
-//        let user = userDefaults.string(forKey: "selectedUser")
-//        return user ?? ""
-       return true ? "Khushee" : "Gautam"
+       return "Gautam"
     }
-    static func getTheme(){
-        let userDefaults = UserDefaults()
-        let theme = userDefaults.integer(forKey: "theme")
-        
+    
+    static func getOtherUser() -> String {
+        return "Khushee"
     }
 }
 
-public let currencyy = {let num = NumberFormatter()
+public let currencyy: NumberFormatter = {
+    let num = NumberFormatter()
     num.numberStyle = .currency
     num.maximumFractionDigits = 0
     num.currencyCode = "INR"

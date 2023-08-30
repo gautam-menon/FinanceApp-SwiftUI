@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
     
     @State private var filter = SortTypes.Latest
     @State private var addTransactionSheet = false
@@ -51,24 +51,23 @@ struct MainView: View {
                     Image(systemName: "plus")
                         .foregroundColor(.black)
                 }
-                .sheet(isPresented: $addTransactionSheet, onDismiss: {
-                    Task{
-                        await reloadWithLoader()
-                    }
-                }) {
-                    Text("HI")
-//                    AddTransactionView(myId: selectedId, otherId:selectedId == otherId ? myId : otherId)
-                    
-                }
-         
-                
+              
             }
         })
         .navigationTitle("\(appName)")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $addTransactionSheet, onDismiss: {
+            Task{
+                await reloadWithLoader()
+            }
+        }) {
+            NavigationStack{
+                UpdateTransactionView()
+            }
+        }
     }
-    
+
     private func reloadWithLoader() async {
         isLoading = true
         await viewModel.downloadData(filter)
@@ -79,7 +78,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            MainView()
+            HomeView()
         }
     }
 }

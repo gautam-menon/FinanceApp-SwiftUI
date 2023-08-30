@@ -1,5 +1,5 @@
 //
-//  AddTransactionView.swift
+//  PayBillView.swift
 //  Finance
 //
 //  Created by Gautam Menon on 30/08/23.
@@ -7,42 +7,27 @@
 
 import SwiftUI
 
-struct AddTransactionView: View {
+
+struct PayBillView: View {
     let myId: String
     let otherId: String
-    //    @State var amount = ""
-    //    @State var reason = ""
-    //    @State var alertMessage = "";
-    @State var animation = false
-    @Binding var amount: String
-    @Binding var reason: String
-    @Binding var alertMessage: String
     let closeSheet: ()->()
+    @Binding var reason: String
+    @Binding var amount: String
+    @Binding var selectedId: String
+    @Binding var alertMessage: String
+    
     var body: some View {
         VStack(spacing: 40){
-            Text("How much do you owe \(otherId)?")
+            Text("Who's Paying?")
                 .font(.headline)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            VStack{
-                Text(otherId.uppercased().prefix(1))
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding()
-                    .foregroundColor(.black)
-                    .background(secondaryColor)
-                    .clipShape(Circle())
-                    .frame(maxWidth: .infinity, alignment: .center)
-                Text(otherId.capitalized)
-                    .fontWeight(.bold)
-                    .foregroundColor(secondaryColor)
+            HStack (spacing: 20) {
+                PersonTile(selectedId: $selectedId, color: appColor, name: myId)
+                PersonTile(selectedId: $selectedId, color: secondaryColor, name: otherId)
             }
-            .scaleEffect(1.2)
-            Image(systemName: "arrow.up.circle.fill")
-                .font(.largeTitle)
-                .foregroundColor(.green)
-                .scaleEffect(animation ? 1.2 : 1.1)
             
             HStack {
                 if !amount.isEmpty {
@@ -66,28 +51,28 @@ struct AddTransactionView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(Color.blue, lineWidth: 1))
-            if let amount = Int(amount){
-                let text = "You Owe \(otherId): "
-                Text("\(text)\(rupeeSign)\(amount)")
+            if(Int(amount) != nil){
+                let text = selectedId == myId ? "\(otherId) Owes You: " : "You Owe \(otherId): "
+                Text("\(text)\(rupeeSign)\(Int(amount)!/2)")
                     .font(.title2)
             }
             
             Spacer()
-            Button {
+            Button
+            {
                 Task {
-                    var finalAmount = Int(amount) ?? 0
                     if(amount.isEmpty){
                         alertMessage = "No amount entered"
                         return;
-                    } else if (finalAmount < 1){
-                        alertMessage = "Incorrect Amount entered"
-                        return;
                     }
+                    //                    isLoading = true;
+                    var finalAmount = Int(amount) ?? 0
                     finalAmount.negate()
-                    let timeStamp:Double = Date().timeIntervalSince1970
-                    let model = TransactionModel(amount: finalAmount, timeStamp: timeStamp, name: otherId, reason: reason)
+                    let timeStamp:Double = Date()
+                        .timeIntervalSince1970
+                    let model = TransactionModel(amount: finalAmount/2, timeStamp: timeStamp, name: selectedId == myId ? otherId  : myId, reason: reason)
                     await FirebaseServices().uploadTransaction(model: model)
-                    closeSheet()
+                closeSheet()
                 }
             }
         label: {
@@ -102,15 +87,7 @@ struct AddTransactionView: View {
             .cornerRadius(15)
             .padding()
         }.frame(maxWidth: .infinity, alignment: .center)
-        }
-        .onAppear{
-            startAnimation()
-        }
-    }
-    
-    func startAnimation(){
-        withAnimation(.easeInOut(duration: 1).repeatForever()) {
-            animation = true
+            
         }
     }
 }

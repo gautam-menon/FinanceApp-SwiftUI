@@ -10,8 +10,6 @@ import Foundation
 
 struct TransactionModel:Hashable, Codable{
     
-    static var selectedId:String = "Gautam"
-    
     var amount:Int
     var timeStamp:Double
     var name:String

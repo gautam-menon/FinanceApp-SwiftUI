@@ -72,7 +72,7 @@ struct ProfitTitle: View {
             Group {
                 ProfitArrow(isUp: isUp)
                     .font(.largeTitle)
-            }.opacity(0)
+            }
             VStack {
                 Text(currencyy.string(from: (totalAmount.convertToPositive() as NSNumber))!)
                     .fontWeight(.semibold)
@@ -93,6 +93,7 @@ struct ProfitTitle: View {
             }
             ProfitArrow(isUp: isUp)
                 .font(.largeTitle)
+                .opacity(0)
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 40)

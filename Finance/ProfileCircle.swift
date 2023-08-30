@@ -32,18 +32,18 @@ struct PersonTile: View {
                     .foregroundColor(color)
             }
             .scaleEffect(isSelected ? 1.5 : 1.2)
-            .padding(50)
+            .padding(40)
             .overlay{
                 if isSelected {
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(color, lineWidth: 4)
+                        .stroke(color, lineWidth: 2)
                 }
             }
         }
     }
     
 }
-struct AddTransactionViw_Previews: PreviewProvider {
+struct Person_Previews: PreviewProvider {
     static var previews: some View {
         PersonTile(selectedId: Binding(get: {
             return "otherId"

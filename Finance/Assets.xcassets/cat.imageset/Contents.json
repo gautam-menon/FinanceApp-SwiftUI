@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cat.jpeg",
+      "filename" : "Cute-Cat.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cat 1.jpeg",
+      "filename" : "Cute-Cat 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cat 2.jpeg",
+      "filename" : "Cute-Cat 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

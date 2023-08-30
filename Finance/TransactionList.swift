@@ -24,8 +24,9 @@ struct TransactionList: View {
                 NavigationLink(destination:  TransactionView( transactionModel: transaction)
                 ) {
                     TransactionTile(transaction: transaction, isMine: isMine)
-                        .deleteDisabled(!isMine)
+                      
                 }
+                .deleteDisabled(!isMine)
             }
             .onDelete{(indexPath) in
                 print(indexPath.first!)

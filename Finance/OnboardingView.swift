@@ -15,6 +15,8 @@ struct OnboardingView: View {
             VStack {
                 Spacer()
                 Image("cat")
+                    .resizable()
+                    .scaledToFit()
                     .clipShape(Circle())
                     .overlay(
                            Circle()
@@ -23,7 +25,7 @@ struct OnboardingView: View {
                
            Spacer()
                 NavigationLink {
-                    MainView()
+                    HomeView()
 //                    Toggle(isOn: $isDarkMode, label: {
 //                                    Text("Dark Mode")
 //                                })
