@@ -26,11 +26,7 @@ struct OnboardingView: View {
            Spacer()
                 NavigationLink {
                     HomeView()
-//                    Toggle(isOn: $isDarkMode, label: {
-//                                    Text("Dark Mode")
-//                                })
-//                        .navigationBarBackButtonHidden(true)
-                }
+              }
             label: {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(appColor)

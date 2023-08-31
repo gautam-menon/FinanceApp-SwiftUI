@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TransactionView: View {
+struct TransactionScreenView: View {
     let myId: String = StorageService.getUser()
     let  transactionModel: TransactionModel
     @Environment(\.presentationMode) var presentationMode
@@ -53,7 +53,7 @@ struct TransactionView: View {
 
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionView(transactionModel: TransactionModel.samples.first!)
+        TransactionScreenView(transactionModel: TransactionModel.samples.first!)
     }
 }
 

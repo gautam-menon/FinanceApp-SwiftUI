@@ -9,14 +9,12 @@ import Foundation
 import FirebaseFirestore
 
 @MainActor class FirebaseServices: ObservableObject{
-//    let transactionCollection = "Transactions";
     let transactionCollection = "TransactionsCollection";
     let notesCollection = "NotesCollection"
     let selectedId = StorageService.getUser()
     private let db = Firestore.firestore()
     
     @Published var transactions = [TransactionModel]()
-//    @Published var notes = [NotesModel]()
     @Published var totalBalance:Int = 0
     
     func uploadTransaction(model: TransactionModel) async{
@@ -50,8 +48,8 @@ import FirebaseFirestore
 //            print(error)
 //        }
 //    }
-    func downloadData(_ sortParam: SortTypes) async {
-       await self.fetchData(myId: selectedId, sortParam: sortParam.text, desc: sortParam.isDescending, onlyMyTransactions: false)
+    func downloadData(_ sortParam: SortTypes, with onlyMyTransactions: Bool) async {
+       await self.fetchData(myId: selectedId, sortParam: sortParam.text, desc: sortParam.isDescending, onlyMyTransactions: onlyMyTransactions)
     }
     
     func deleteTransaction(model: TransactionModel) async{

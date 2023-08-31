@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @State private var filter = SortTypes.Latest
     @State private var addTransactionSheet = false
     @State private var isLoading = false
+    @State private var onlyMyTransactions = false
+    @State private var isSettingsActive = false
     @ObservedObject private var viewModel = FirebaseServices()
     
     var body: some View {
@@ -23,12 +24,12 @@ struct HomeView: View {
                 VStack (spacing: 10) {
                     ProfitTitle(totalAmount: viewModel.totalBalance)
                     FilterView(filter: $filter, reloadWithLoader: reloadWithLoader)
-                    TransactionList(viewModel: viewModel, filter: filter)
+                    TransactionList(viewModel: viewModel, filter: filter, reloadWithLoader: reloadWithLoader)
                 }
             }
         }
         .refreshable {
-            await viewModel.downloadData(filter)
+            await viewModel.downloadData(filter, with: onlyMyTransactions)
         }
         .task{
             await reloadWithLoader()
@@ -37,10 +38,11 @@ struct HomeView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     withAnimation {
+                        isSettingsActive.toggle()
                     }
                 } label: {
                     Image(systemName: "gear")
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                 }
                 
             }
@@ -49,9 +51,9 @@ struct HomeView: View {
                     addTransactionSheet.toggle()
                 }   label: {
                     Image(systemName: "plus")
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                 }
-              
+                
             }
         })
         .navigationTitle("\(appName)")
@@ -66,11 +68,18 @@ struct HomeView: View {
                 UpdateTransactionView()
             }
         }
+        .sheet(isPresented: $isSettingsActive, onDismiss: {
+            Task{
+                await reloadWithLoader()
+            }
+        }) {
+            SettingsView(onlyMyTransactions: $onlyMyTransactions)
+        }
     }
-
+    
     private func reloadWithLoader() async {
         isLoading = true
-        await viewModel.downloadData(filter)
+        await viewModel.downloadData(filter, with: onlyMyTransactions)
         isLoading = false
     }
 }

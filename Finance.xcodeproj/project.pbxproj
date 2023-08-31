@@ -10,6 +10,10 @@
 		1C2A4E2E2A9B896E00B89C8B /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A4E2D2A9B896E00B89C8B /* Components.swift */; };
 		1C406BEF2A9FABFD00BE5F7C /* PayBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BEE2A9FABFD00BE5F7C /* PayBillView.swift */; };
 		1C406BF12A9FAC7E00BE5F7C /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BF02A9FAC7E00BE5F7C /* AddTransactionView.swift */; };
+		1C406BF32AA0E27B00BE5F7C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BF22AA0E27B00BE5F7C /* SettingsView.swift */; };
+		1C406BF62AA0E70400BE5F7C /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BF52AA0E70400BE5F7C /* StorageService.swift */; };
+		1C406BF82AA0E72F00BE5F7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BF72AA0E72F00BE5F7C /* Extensions.swift */; };
+		1C406BFB2AA0E76500BE5F7C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406BFA2AA0E76500BE5F7C /* UserModel.swift */; };
 		1C6B99932A99E2A800C558A1 /* FinanceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6B99922A99E2A800C558A1 /* FinanceApp.swift */; };
 		1C6B99952A99E2A800C558A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6B99942A99E2A800C558A1 /* OnboardingView.swift */; };
 		1C6B99972A99E2A900C558A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B99962A99E2A900C558A1 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 		1C2A4E2D2A9B896E00B89C8B /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		1C406BEE2A9FABFD00BE5F7C /* PayBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBillView.swift; sourceTree = "<group>"; };
 		1C406BF02A9FAC7E00BE5F7C /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
+		1C406BF22AA0E27B00BE5F7C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1C406BF52AA0E70400BE5F7C /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		1C406BF72AA0E72F00BE5F7C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1C406BFA2AA0E76500BE5F7C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1C6B998F2A99E2A800C558A1 /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6B99922A99E2A800C558A1 /* FinanceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceApp.swift; sourceTree = "<group>"; };
 		1C6B99942A99E2A800C558A1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -99,6 +107,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C406BF42AA0E6E000BE5F7C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1C2A4E2D2A9B896E00B89C8B /* Components.swift */,
+				1C6B99BC2A99E38200C558A1 /* Helper.swift */,
+				1C406BF72AA0E72F00BE5F7C /* Extensions.swift */,
+				1C6B99BE2A9A002E00C558A1 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1C406BF92AA0E75800BE5F7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C6B99C22A9A0ABD00C558A1 /* Model.swift */,
+				1C406BFA2AA0E76500BE5F7C /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1C406BFC2AA0E78500BE5F7C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1C9157E52A9B5FE50013CFC7 /* FirebaseServices.swift */,
+				1C406BF52AA0E70400BE5F7C /* StorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1C6B99862A99E2A800C558A1 = {
 			isa = PBXGroup;
 			children = (
@@ -126,17 +163,16 @@
 				1C6B99922A99E2A800C558A1 /* FinanceApp.swift */,
 				1C6B99942A99E2A800C558A1 /* OnboardingView.swift */,
 				1C6B99C02A9A00D600C558A1 /* HomeView.swift */,
+				1C406BF22AA0E27B00BE5F7C /* SettingsView.swift */,
 				1C96608C2A9BA8100071BDDA /* UpdateTransactionView.swift */,
 				1C406BF02A9FAC7E00BE5F7C /* AddTransactionView.swift */,
 				1C406BEE2A9FABFD00BE5F7C /* PayBillView.swift */,
 				1C96608E2A9BB0EA0071BDDA /* ProfileCircle.swift */,
-				1C9157E52A9B5FE50013CFC7 /* FirebaseServices.swift */,
+				1C406BFC2AA0E78500BE5F7C /* Services */,
+				1C406BF92AA0E75800BE5F7C /* Models */,
+				1C406BF42AA0E6E000BE5F7C /* Helpers */,
 				1C6B99C42A9A37BE00C558A1 /* TransactionVie.swift */,
-				1C6B99C22A9A0ABD00C558A1 /* Model.swift */,
-				1C6B99BC2A99E38200C558A1 /* Helper.swift */,
-				1C2A4E2D2A9B896E00B89C8B /* Components.swift */,
 				1C96608A2A9B9E930071BDDA /* TransactionList.swift */,
-				1C6B99BE2A9A002E00C558A1 /* Constants.swift */,
 				1C6B99962A99E2A900C558A1 /* Assets.xcassets */,
 				1C6B99982A99E2A900C558A1 /* Preview Content */,
 			);
@@ -305,10 +341,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C406BF32AA0E27B00BE5F7C /* SettingsView.swift in Sources */,
 				1C6B99952A99E2A800C558A1 /* OnboardingView.swift in Sources */,
 				1C406BEF2A9FABFD00BE5F7C /* PayBillView.swift in Sources */,
 				1C96608D2A9BA8100071BDDA /* UpdateTransactionView.swift in Sources */,
 				1C6B99C52A9A37BE00C558A1 /* TransactionVie.swift in Sources */,
+				1C406BF62AA0E70400BE5F7C /* StorageService.swift in Sources */,
 				1C6B99932A99E2A800C558A1 /* FinanceApp.swift in Sources */,
 				1C6B99C12A9A00D600C558A1 /* HomeView.swift in Sources */,
 				1C6B99C32A9A0ABD00C558A1 /* Model.swift in Sources */,
@@ -317,7 +355,9 @@
 				1C96608B2A9B9E930071BDDA /* TransactionList.swift in Sources */,
 				1C9157E62A9B5FE50013CFC7 /* FirebaseServices.swift in Sources */,
 				1C96608F2A9BB0EA0071BDDA /* ProfileCircle.swift in Sources */,
+				1C406BF82AA0E72F00BE5F7C /* Extensions.swift in Sources */,
 				1C2A4E2E2A9B896E00B89C8B /* Components.swift in Sources */,
+				1C406BFB2AA0E76500BE5F7C /* UserModel.swift in Sources */,
 				1C6B99BF2A9A002E00C558A1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +521,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Luchha 2.0";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -511,6 +552,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Luchha 2.0";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -10,7 +10,7 @@ import SwiftUI
 struct TransactionList: View {
     @ObservedObject var viewModel: FirebaseServices
     let filter: SortTypes
-    
+    let reloadWithLoader: () async -> ()
     let myId = StorageService.getUser()
     @State private var showDeleteAlert:TransactionModel?
     
@@ -21,7 +21,7 @@ struct TransactionList: View {
                 .fontWeight(.semibold)
             ForEach(viewModel.transactions, id: \.self) { transaction in
                 let isMine = transaction.name == myId
-                NavigationLink(destination:  TransactionView( transactionModel: transaction)
+                NavigationLink(destination:  TransactionScreenView( transactionModel: transaction)
                 ) {
                     TransactionTile(transaction: transaction, isMine: isMine)
                       
@@ -41,9 +41,8 @@ struct TransactionList: View {
                                if showDeleteAlert != nil {
                                    await viewModel.deleteTransaction(model: showDeleteAlert!)}
                                showDeleteAlert = nil
-                               await viewModel.downloadData(filter)
+                               await reloadWithLoader()
                            }
-                           
                        }
                        Button("No") { showDeleteAlert = nil }
                    }
@@ -54,6 +53,6 @@ struct TransactionList: View {
 
 struct TransactionList_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionList(viewModel: FirebaseServices(), filter: SortTypes.Latest)
+        TransactionList(viewModel: FirebaseServices(), filter: SortTypes.Latest, reloadWithLoader: {})
     }
 }

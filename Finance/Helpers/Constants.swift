@@ -11,6 +11,8 @@ import SwiftUI
 let appName = "Luchha 2.0"
 let appColor = Color("appColor")
 let secondaryColor = Color("secondaryColor")
+let primaryColor = Color("primaryColor")
+let backgroundColor = Color(.tertiarySystemBackground)
 let rupeeSign = "₹"
 let filterWidth = UIScreen.main.bounds.width / CGFloat(SortTypes.allCases.count) - 10
 
